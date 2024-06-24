@@ -1,0 +1,21 @@
+GET http://localhost:5066/todos
+
+###
+
+POST http://localhost:5066/todos
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Practice LeetCode",
+    "dueDate": "2024-12-31",
+    "isCompleted": false
+}
+
+###
+
+GET http://localhost:5066/todos/2
+
+###
+
+DELETE http://localhost:5066/todos/1
