@@ -6,8 +6,8 @@ POST http://localhost:5066/todos
 Content-Type: application/json
 
 {
-    "id": 2,
-    "name": "Practice LeetCode",
+    "id": 1,
+    "name": "Learn Machine Learning",
     "dueDate": "2024-12-31",
     "isCompleted": false
 }
@@ -19,3 +19,7 @@ GET http://localhost:5066/todos/2
 ###
 
 DELETE http://localhost:5066/todos/1
+
+###
+
+GET http://localhost:5066/tasks/1
