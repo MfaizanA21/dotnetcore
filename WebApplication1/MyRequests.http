@@ -6,10 +6,10 @@ POST http://localhost:5066/todos
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Learn Machine Learning",
-    "dueDate": "2024-12-31",
-    "isCompleted": false
+    "id": 2,
+    "name": "Learn dotNet",
+    "dueDate": "2021-12-31",
+    "isCompleted": true
 }
 
 ###

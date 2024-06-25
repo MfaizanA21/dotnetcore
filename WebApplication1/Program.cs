@@ -12,6 +12,7 @@ app.Use(async (context, next) => {
     Console.WriteLine($"[{context.Request.Method} {context.Request.Path} {DateTime.UtcNow}] Finished.");
 });
 
+
 var todos = new List<Todo>();
 
 app.MapGet("/todos", () => todos);
@@ -25,6 +26,22 @@ app.MapPost("/todos", (Todo task) =>
 {
     todos.Add(task);
     return TypedResults.Created($"/todos/{task.Id}", task);
+})
+.AddEndpointFilter(async (context, next) => {
+    var taskArgument = context.GetArgument<Todo>(0);
+    var errors = new Dictionary<string, string[]>();
+    if (taskArgument.DueDate < DateTime.UtcNow)
+    {
+        errors.Add("DueDate", new string[] { "Due date must be in the future" });
+    }
+    if (taskArgument.isComplete) {
+        errors.Add("isComplete", new string[] { "Cannot add a completed Task" });
+    }
+    if (errors.Count > 0) {
+        return Results.ValidationProblem(errors);
+    }
+
+    return await next(context);
 });
 
 app.MapDelete("/todos/{id}",  (int id) => {
